@@ -1,0 +1,51 @@
+generated: '2026-07-19'
+method: searched
+source: https://labsteppy.readthedocs.io/en/latest/source/installation_login.html ;
+  https://github.com/Labstep/labstepPy (labstep/service/helpers.py, labstep/entities/user/repository.py)
+  ; https://www.labstep.com/security
+docs: https://help.labstep.com/en/articles/1786226-getting-started-with-the-labstep-api
+note: Labstep publishes no OpenAPI definition, so this profile is captured from the
+  officially maintained Python SDK source and the published docs rather than derived
+  from securitySchemes.
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+  oauth2_flows: []
+  oauth2: false
+  openid_connect: false
+schemes:
+- name: apikey
+  type: apiKey
+  in: header
+  parameter_name: apikey
+  description: Per-user API key generated from the Labstep application and sent on
+    every request in an `apikey` request header. This is the documented and recommended
+    authentication method.
+  docs: https://help.labstep.com/en/articles/3636355
+  source: labstep/service/helpers.py getHeaders()
+- name: bearer
+  type: http
+  scheme: bearer
+  description: Session/impersonation token passed as an Authorization Bearer credential.
+    Used by the SDK's authenticateWithToken() and by tokens minted through the impersonate
+    flow; not the primary documented developer path.
+  source: labstep/entities/user/repository.py authenticateWithToken()
+deprecated:
+- name: password login
+  detail: Username/password login via POST /public-api/user/login is deprecated. The
+    SDK raises "Login via password has been deprecated. Please use labstep.authenticate
+    with an API key instead."
+  source: labstep/entities/user/repository.py login()
+account_level_controls:
+  sso:
+  - SAML
+  - Google SSO
+  mfa: true
+  ip_allowlisting: true
+  source: https://www.labstep.com/security
+example: |
+  import labstep
+  user = labstep.authenticate('myaccount@labstep.com', 'MY_API_KEY')
