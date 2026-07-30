@@ -1,0 +1,64 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/Labstep/labstepPy/blob/develop/CHANGELOG.md
+product_release_notes: https://help.labstep.com/en/collections/945011-release-notes
+note: Labstep publishes product release notes in its help center but no dated API changelog.
+  The nearest dated, structured public record of API-surface change is the official
+  Python SDK CHANGELOG, captured here. Entries below are the recent window, verbatim
+  in substance from that file.
+scheme: semver
+format: keep-a-changelog
+current_version: 3.36.3
+current_version_source: https://pypi.org/project/labstep/
+entries:
+- version: 3.34.0
+  date: null
+  date_note: unreleased in CHANGELOG (dated XXXX-XX-XX)
+  breaking: false
+  additions:
+  - CustomIdentifierSet model and repository
+- version: 3.33.0
+  date: '2025-06-11'
+  breaking: false
+  additions:
+  - shareWith and assign methods added to Folder
+  - addUsers method on the Organization model
+  - Action `view` now supported in setWorkspaceRolePermission
+- version: 3.32.1
+  date: '2025-05-22'
+  breaking: false
+  fixes:
+  - getDataFrame now works on multisheet tables for ExperimentTable and ProtocolTable
+- version: 3.32.0
+  date: '2025-05-20'
+  breaking: false
+  additions:
+  - getVersions method on the Protocol model
+- version: 3.31.0
+  date: '2024-12-28'
+  breaking: true
+  additions:
+  - getLineageParents and getLineageChildren methods on ResourceItem
+  removals:
+  - ExperimentDataField.linkToInventoryField and getLinkedInventoryFields (manual linking
+    no longer required)
+- version: 3.30.0
+  date: '2024-12-28'
+  breaking: false
+  changes:
+  - Protocol Draft support; getCurrentVersion getter returns draft_version or last_version
+- version: 3.29.0
+  date: '2024-12-13'
+  breaking: false
+  additions:
+  - JupyterInstance data
+- version: 3.28.2
+  date: '2024-11-05'
+  breaking: false
+  additions:
+  - Option to save export PDF as file
+- version: 3.28.1
+  date: '2024-11-04'
+  breaking: false
+  fixes:
+  - PDF export request too large error

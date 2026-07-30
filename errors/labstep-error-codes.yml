@@ -1,0 +1,32 @@
+generated: '2026-07-19'
+method: derived
+source: https://github.com/Labstep/labstepPy (labstep/service/request.py)
+note: Labstep publishes no error reference page and no OpenAPI definition, so no problem-type
+  registry exists to harvest. What follows is the error contract as implemented by
+  the official Python SDK — the envelope, the success rule, and the statuses the client
+  treats as retryable. No error codes are invented.
+format: http-status
+problem_details_rfc9457: false
+envelope:
+  shape: raw response body returned alongside the HTTP status code
+  detail: 'The SDK raises RequestException("Request Error {status_code}: {message}")
+    where `message` is the verbatim response content. There is no documented structured
+    error object (no `type`/`title`/`detail` fields).'
+success_rule:
+  detail: Only HTTP 200 is treated as success. Any other status — including other 2xx
+    codes — raises an error in the official SDK.
+  source: labstep/service/request.py handleError()
+retryable_statuses:
+- 501
+- 502
+- 503
+- 504
+retry_policy:
+  total: 3
+  raise_on_status: false
+  scope: client-side, implemented in the SDK; not a published server contract
+problems: []
+gaps:
+- No published error-code registry or error reference page.
+- No RFC 9457 application/problem+json responses.
+- No documented remediation guidance per failure mode.

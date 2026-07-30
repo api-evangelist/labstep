@@ -1,0 +1,191 @@
+generated: '2026-07-19'
+method: derived
+source: https://github.com/Labstep/labstepPy (labstep/entities/*) ; https://labsteppy.readthedocs.io/en/latest/
+note: Labstep publishes no OpenAPI definition. The entity set below is enumerated from
+  the 67 entity modules in the official Python SDK, each of which maps to a `/api/generic/<entity>`
+  resource. Relationships are recorded only where the SDK/docs name them explicitly
+  (accessor methods, entity names, documented examples); no relationship is inferred
+  speculatively.
+entity_path_pattern: /api/generic/<entity>
+domains:
+- name: notebook
+  entities:
+  - experiment
+  - experimentTemplate
+  - experimentProtocol
+  - experimentStep
+  - experimentTable
+  - experimentTimer
+  - experimentDataField
+  - experimentInventoryField
+  - experimentLink
+  - experimentCondition
+  - experimentSignature
+  - experimentSignatureRequest
+  - signatureRequirement
+- name: protocols
+  entities:
+  - protocol
+  - protocolVersion
+  - protocolStep
+  - protocolTable
+  - protocolTimer
+  - protocolDataField
+  - protocolInventoryField
+  - protocolDevice
+  - protocolCondition
+- name: inventory
+  entities:
+  - resource
+  - resourceTemplate
+  - resourceCategory
+  - resourceItem
+  - resourceLocation
+  - orderRequest
+  - purchaseOrder
+- name: devices
+  entities:
+  - device
+  - deviceTemplate
+  - deviceCategory
+  - deviceData
+  - deviceBooking
+- name: chemistry-and-biology
+  entities:
+  - chemical
+  - chemicalReaction
+  - molecule
+  - sequence
+- name: data-and-files
+  entities:
+  - metadata
+  - file
+  - export
+  - entityImport
+  - jupyterNotebook
+  - jupyterInstance
+  - jupyterSchedule
+- name: collaboration
+  entities:
+  - comment
+  - tag
+  - collection
+  - notification
+  - notificationAlert
+  - sharelink
+  - invitation
+- name: identity-and-access
+  entities:
+  - user
+  - apiKey
+  - organization
+  - organizationUser
+  - workspace
+  - workspaceMember
+  - workspaceRole
+  - workspaceRolePermission
+  - collaborator
+  - collaboratorRole
+  - collaboratorRoleRequirement
+  - permission
+  - autoshare
+- name: workflow
+  entities:
+  - entityState
+  - entityStateWorkflow
+  - customIdentifierSet
+relationships:
+- from: experiment
+  to: experimentProtocol
+  type: has_many
+  evidence: SDK Experiment.addProtocol / getProtocols
+- from: experiment
+  to: experimentDataField
+  type: has_many
+  evidence: SDK ExperimentDataField documented as a data field on an experiment
+- from: experimentProtocol
+  to: experimentStep
+  type: has_many
+  evidence: SDK entity naming and protocol/experiment step accessors
+- from: experimentProtocol
+  to: experimentTable
+  type: has_many
+  evidence: SDK ExperimentTable.getDataFrame documented against experiment tables
+- from: protocol
+  to: protocolVersion
+  type: has_many
+  via: last_version / draft_version
+  evidence: SDK CHANGELOG 3.32.0 getVersions; 3.30.0 getCurrentVersion returns draft_version
+    or last_version
+- from: protocol
+  to: protocolStep
+  type: has_many
+  evidence: SDK entity naming
+- from: resource
+  to: resourceItem
+  type: has_many
+  evidence: SDK inventory examples — items are instances of a resource
+- from: resource
+  to: resourceTemplate
+  type: belongs_to
+  evidence: SDK advanced-filter docs use the path `resource.template`
+- from: resourceItem
+  to: resourceLocation
+  type: belongs_to
+  evidence: SDK inventory examples place items in locations
+- from: resourceItem
+  to: resourceItem
+  type: has_many
+  via: lineage
+  evidence: SDK CHANGELOG 3.31.0 getLineageParents / getLineageChildren
+- from: resourceItem
+  to: metadata
+  type: has_many
+  evidence: SDK example resource_item.getMetadata()
+- from: metadata
+  to: notificationAlert
+  type: has_one
+  evidence: SDK example expiry_date.getNotificationAlert() on a date-based metadata
+    field
+- from: device
+  to: deviceData
+  type: has_many
+  evidence: SDK device examples attach data from instruments
+- from: device
+  to: deviceBooking
+  type: has_many
+  evidence: SDK entity naming and device docs
+- from: orderRequest
+  to: resource
+  type: belongs_to
+  evidence: SDK inventory/order docs — order requests are raised against a resource
+- from: workspace
+  to: workspaceMember
+  type: has_many
+  evidence: SDK entity naming and workspace docs
+- from: workspace
+  to: workspaceRole
+  type: has_many
+  evidence: SDK setWorkspaceRolePermission
+- from: workspaceRole
+  to: workspaceRolePermission
+  type: has_many
+  evidence: SDK setWorkspaceRolePermission
+- from: organization
+  to: organizationUser
+  type: has_many
+  evidence: SDK CHANGELOG 3.33.0 Organization.addUsers
+- from: user
+  to: apiKey
+  type: has_many
+  evidence: SDK apiKey entity; API keys are per-user
+- from: entityStateWorkflow
+  to: entityState
+  type: has_many
+  evidence: SDK entity naming and entityStateWorkflow docs
+identifiers:
+  numeric_id: true
+  guid: true
+  detail: Most entities carry both a numeric `id` and a `guid`; SDK reads select between
+    them with a `useGuid` switch.
+render: null

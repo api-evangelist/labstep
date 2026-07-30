@@ -1,0 +1,68 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.labstep.com/security
+note: Labstep publishes a security & compliance page naming the standards below. Wording
+  is preserved carefully — several are stated as practices Labstep aligns to or supports
+  rather than as third-party certifications. No certification claim is upgraded here
+  beyond what the page states.
+standards:
+- id: fda-21-cfr-part-11
+  conforms: true
+  evidence: Security page states support for FDA 21 CFR Part 11 through thorough audit
+    trails, electronic signatures and electronic records support.
+- id: iso-27001
+  conforms: true
+  qualifier: aligned
+  evidence: Named on the security page as a standard Labstep's security practices comply
+    with. No certificate number or certifying body published.
+- id: fips-200
+  conforms: true
+  qualifier: aligned
+  evidence: Named on the security page as a compliant security practice.
+- id: glp
+  conforms: true
+  evidence: Security page notes Good Laboratory Practice (GLP) compliance capability.
+- id: gmp
+  conforms: true
+  evidence: Security page notes Good Manufacturing Practice (GMP) compliance capability.
+- id: owasp-top-10
+  conforms: true
+  evidence: Security page states Labstep has adopted the OWASP Top 10 documentation
+    and mitigates these risks.
+- id: saml-2.0
+  conforms: true
+  evidence: SAML single sign-on integration offered at the organization level.
+- id: soc-2
+  conforms: false
+  evidence: Not named on the published security page.
+- id: hipaa
+  conforms: false
+  evidence: Not named on the published security page.
+- id: fedramp
+  conforms: false
+  evidence: Not named on the published security page.
+- id: oauth2
+  conforms: false
+  evidence: The API authenticates with a per-user API key header; no OAuth 2.0 authorization
+    server is published.
+- id: openid-connect
+  conforms: false
+  evidence: No /.well-known/openid-configuration on any probed host (all 404).
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No application/problem+json error responses; errors return the raw body
+    with an HTTP status.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on all probed hosts.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No published deprecation policy or Sunset header support.
+security_practices:
+  hosting: Amazon Web Services (AWS)
+  encryption_in_transit: TLS/SSL
+  encryption_at_rest: AES-256 (S3 buckets, RDS database, ElasticSearch index)
+  network: AWS virtual private networking with multilayered firewalls
+  backups: Daily MySQL backups; weekly backups retained for 1 year; S3 with geo-replication
+  audits: Annual third-party security audits; annual grey-box penetration testing
+  source: https://www.labstep.com/security

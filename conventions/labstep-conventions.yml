@@ -1,0 +1,109 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/Labstep/labstepPy (labstep/generic/entity/repository.py,
+  labstep/service/request.py, labstep/service/config.py) ; https://labsteppy.readthedocs.io/en/latest/source/advanced_filter.html
+note: Labstep publishes no OpenAPI definition. These cross-cutting semantics are captured
+  from the officially maintained Python SDK source and the published SDK documentation.
+base_url: https://api.labstep.com
+host_override:
+  supported: true
+  mechanism: LABSTEP_API_URL environment variable (or ConfigService.setHost), used
+    for self-hosted/enterprise deployments.
+  source: labstep/service/config.py
+authentication:
+  style: api-key-header
+  header: apikey
+  alternative: Authorization Bearer token
+  see: authentication/labstep-authentication.yml
+resource_paths:
+  generic_entity: /api/generic/<entity>
+  filter: POST /api/generic/<entity>/filter
+  public: /public-api/<resource>
+  note: Entity path segments are kebab-cased entity names (e.g. `notification-alert`,
+    `resource-item`).
+identifiers:
+  styles:
+  - integer id
+  - guid
+  detail: Most entities expose both a numeric `id` and a `guid`; SDK reads accept either
+    via a `useGuid` switch.
+pagination:
+  style: page-number
+  request_params:
+    page: page number, 1-based
+    count: page size sent to the API
+    skip_total: '1 to skip computing the total count'
+  sdk_params:
+    pageSize: default 50
+    count: optional cap on entities returned
+  response_fields:
+  - items
+  source: labstep/generic/entity/repository.py filterEntities()
+filtering:
+  style: structured predicate tree posted to /filter
+  structure:
+    path: associated entity class to traverse (e.g. metadatas, tags, resource.template)
+    type: logical operator, `and` or `or`
+    predicates: list of conditions, nestable
+  predicate_fields:
+  - attribute
+  - comparison
+  - value
+  comparisons:
+  - equal_to
+  - not_equal_to
+  - less_than
+  - greater_than
+  - less_than_or_equal_to
+  - greater_than_or_equal_to
+  - isNull
+  - isNotNull
+  - like
+  - notLike
+  docs: https://labsteppy.readthedocs.io/en/latest/source/advanced_filter.html
+tenancy:
+  scope_field: group_id
+  detail: Reads and filters are scoped to the caller's active workspace, sent as `group_id`
+    on the request body.
+soft_delete:
+  supported: true
+  param: is_deleted
+  values:
+  - 'true'
+  - 'false'
+  - both
+  detail: Entity reads accept an `is_deleted` filter, defaulting to `both` in the SDK;
+    entities are soft-deleted rather than removed.
+idempotency:
+  supported: false
+  detail: Labstep documents no idempotency key header or replay-safe write contract.
+request_tracing:
+  request_id_header: null
+  user_agent: Sent on every SDK request (e.g. "Python SDK <version>").
+versioning:
+  scheme: unversioned-path
+  detail: The API root reports a service version (e.g. {"name":"Labstep API","version":"8.0.8"})
+    but the request paths carry no version segment.
+  see: lifecycle/labstep-lifecycle.yml
+errors:
+  envelope: raw response body returned with the HTTP status code
+  detail: Any non-200 status is treated as an error by the SDK, which raises RequestException
+    carrying the status code and the response body.
+  see: errors/labstep-error-codes.yml
+retries:
+  client_side: true
+  total: 3
+  status_forcelist:
+  - 501
+  - 502
+  - 503
+  - 504
+  detail: The Python SDK ships a urllib3 Retry strategy for these gateway statuses;
+    this is client behaviour, not a published server contract.
+timeouts:
+  default_seconds: 60
+  detail: SDK default request timeout.
+rate_limits:
+  published: false
+  detail: Labstep publishes no rate-limit documentation and no rate-limit response
+    headers are handled by the SDK.

@@ -1,0 +1,58 @@
+generated: '2026-07-19'
+method: searched
+source: https://pypi.org/project/labstep/ ; https://github.com/Labstep
+notes: Labstep publishes one registry-distributed client library (the Python SDK on
+  PyPI) and one source-distributed client library (the R package, installed from GitHub
+  via devtools). No npm package named `labstep` exists (404 on the npm registry) and
+  no Maven/NuGet/Go/RubyGems/Packagist/crates.io first-party package was found.
+packages:
+- language: python
+  registry: pypi
+  name: labstep
+  version: 3.36.3
+  url: https://pypi.org/project/labstep/
+  install: pip install labstep
+  source: https://github.com/Labstep/labstepPy
+  docs: https://labsteppy.readthedocs.io/en/latest/
+  summary: Python SDK for working with the Labstep API
+  official: true
+- language: r
+  registry: github
+  name: labstepR
+  version: 0.0.3
+  url: https://github.com/Labstep/labstepR
+  install: devtools::install_github("Labstep/labstepR")
+  source: https://github.com/Labstep/labstepR
+  docs: https://labstep.github.io/labstepR/reference/index.html
+  summary: An R package for working with the Labstep API (wrapper functions around
+    the Labstep API)
+  license: MIT
+  official: true
+  notes: Not published to CRAN; installed from GitHub source.
+examples:
+- name: labstep-api-examples
+  url: https://github.com/Labstep/labstep-api-examples
+  language: jupyter-notebook
+  summary: A collection of simple Python scripts demonstrating Labstep API usage.
+  official: true
+registries_probed:
+- registry: pypi
+  result: hit
+- registry: npm
+  result: miss
+  detail: https://registry.npmjs.org/labstep returned 404
+- registry: cran
+  result: miss
+  detail: labstepR is not on CRAN
+- registry: maven-central
+  result: miss
+- registry: nuget
+  result: miss
+- registry: pkg.go.dev
+  result: miss
+- registry: rubygems
+  result: miss
+- registry: packagist
+  result: miss
+- registry: crates.io
+  result: miss

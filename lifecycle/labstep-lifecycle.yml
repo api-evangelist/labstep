@@ -1,0 +1,48 @@
+generated: '2026-07-19'
+method: searched
+source: https://api.labstep.com (service root) ; https://help.labstep.com/en/collections/945011-release-notes
+  ; https://github.com/Labstep/labstepPy/blob/develop/CHANGELOG.md
+versioning:
+  scheme: unversioned-path
+  service_version: 8.0.8
+  service_version_source: 'GET https://api.labstep.com returns {"name":"Labstep API","version":"8.0.8"}
+    (observed 2026-07-19)'
+  detail: Request paths carry no version segment. The service reports its own version
+    at the API root, but no version negotiation header, date-pinning or version train
+    is documented.
+  docs: null
+release_notes:
+  url: https://help.labstep.com/en/collections/945011-release-notes
+  scope: product release notes published in the help center
+sdk_versioning:
+  scheme: semver
+  policy: Keep a Changelog / Semantic Versioning (stated in the SDK CHANGELOG)
+  changelog: https://github.com/Labstep/labstepPy/blob/develop/CHANGELOG.md
+deprecation:
+  policy_url: null
+  sunset_header: null
+  detail: No published deprecation policy and no evidence of RFC 8594 Sunset/Deprecation
+    header support. Individual deprecations are announced in SDK release notes only.
+  observed_deprecations:
+  - item: Password login (POST /public-api/user/login)
+    status: deprecated
+    replacement: API-key authentication via labstep.authenticate()
+    source: labstep/entities/user/repository.py login()
+  - item: ExperimentDataField.linkToInventoryField / getLinkedInventoryFields
+    status: removed
+    version: 3.31.0
+    date: '2024-12-28'
+    source: labstepPy CHANGELOG
+sla:
+  url: null
+  uptime_target: null
+status_page:
+  url: null
+  probed:
+  - host: https://status.labstep.com
+    result: does not resolve
+deprecated_operations: []
+gaps:
+- No public status page.
+- No published deprecation or sunset policy for the API.
+- No published SLA or uptime target.
