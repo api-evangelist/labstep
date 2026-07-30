@@ -1,20 +1,77 @@
 aid: labstep
 name: Labstep
-description: Labstep is a company surfaced as a portfolio company of seedcamp and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: Labstep is a cloud-based Electronic Lab Notebook (ELN) and research data
+  management platform for life-science, chemistry and pharma R&D teams. It combines
+  step-by-step interactive protocols, structured experiment data capture, inventory
+  and sample management with QR scanning, order management, instrument/device integration,
+  chemistry and sequence tooling, and integrated Jupyter Notebooks for analysis — all
+  under an audit trail with electronic signatures and sample lineage. Labstep exposes
+  a public REST API at api.labstep.com secured with a per-user API key, plus an officially
+  maintained Python SDK (labstepPy) and an R package (labstepR) that wrap the same
+  generic entity surface used by the application itself.
 url: https://raw.githubusercontent.com/api-evangelist/labstep/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.labstep.com/favicon.ico
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - seedcamp
-x-tier: stub
-x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Electronic Lab Notebook
+- Life Sciences
+- Laboratory
+- Research Data Management
+- Scientific Software
+- Inventory Management
+- Biotechnology
+- Chemistry
+- Compliance
+apis:
+- aid: labstep:labstep-api
+  name: Labstep API
+  description: The Labstep REST API exposes the same generic entity surface the Labstep
+    application uses — experiments, protocols, resources, resource items, locations,
+    devices, device data, orders, metadata, files, tags, collections, workspaces and
+    users. Requests are authenticated with a per-user API key sent in an `apikey` header
+    (an Authorization Bearer token form is also supported), and entities are read,
+    filtered, created, edited and deleted under `/api/generic/<entity>` with a POST
+    `/filter` endpoint for structured predicate queries.
+  humanURL: https://help.labstep.com/en/collections/1913112-labstep-api
+  baseURL: https://api.labstep.com
+  tags:
+  - Electronic Lab Notebook
+  - Research Data
+  - Laboratory
+  properties:
+  - type: Documentation
+    url: https://help.labstep.com/en/collections/1913112-labstep-api
+  - type: GettingStarted
+    url: https://help.labstep.com/en/articles/1786226-getting-started-with-the-labstep-api
+  - type: APIReference
+    url: https://labsteppy.readthedocs.io/en/latest/
+  - type: Authentication
+    url: authentication/labstep-authentication.yml
+  - type: Conventions
+    url: conventions/labstep-conventions.yml
+  - type: ErrorCatalog
+    url: errors/labstep-error-codes.yml
+  - type: DataModel
+    url: data-model/labstep-data-model.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -22,4 +79,65 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: http://labstep.com
+  url: https://www.labstep.com
+- type: DeveloperPortal
+  url: https://help.labstep.com/en/collections/1913112-labstep-api
+- type: Documentation
+  url: https://labsteppy.readthedocs.io/en/latest/
+- type: APIReference
+  url: https://labsteppy.readthedocs.io/en/latest/
+- type: GettingStarted
+  url: https://help.labstep.com/en/articles/1786226-getting-started-with-the-labstep-api
+- type: Support
+  url: https://help.labstep.com
+- type: HelpCenter
+  url: https://help.labstep.com
+- type: Blog
+  url: https://www.labstep.com/blogs/blog
+- type: GitHubOrganization
+  url: https://github.com/Labstep
+- type: Pricing
+  url: https://www.labstep.com/industry-pricing
+- type: SignUp
+  url: https://app.labstep.com/signup
+- type: Login
+  url: https://app.labstep.com/login
+- type: TermsOfService
+  url: https://www.labstep.com/terms-conditions
+- type: PrivacyPolicy
+  url: https://www.labstep.com/privacy-policy
+- type: Security
+  url: https://www.labstep.com/security
+- type: Compliance
+  url: https://www.labstep.com/security
+- type: ChangeLog
+  url: https://help.labstep.com/en/collections/945011-release-notes
+- type: Packages
+  url: packages/labstep-packages.yml
+- type: SDKs
+  url: packages/labstep-packages.yml
+- type: WellKnown
+  url: well-known/labstep-well-known.yml
+- type: LLMsTxt
+  url: llms/labstep-llms.txt
+- type: Conformance
+  url: conformance/labstep-conformance.yml
+- type: Authentication
+  url: authentication/labstep-authentication.yml
+- type: Conventions
+  url: conventions/labstep-conventions.yml
+- type: ErrorCatalog
+  url: errors/labstep-error-codes.yml
+- type: Lifecycle
+  url: lifecycle/labstep-lifecycle.yml
+- type: ChangeLog
+  url: changelog/labstep-changelog.yml
+- type: DataModel
+  url: data-model/labstep-data-model.yml
+- type: DomainSecurity
+  url: security/labstep-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
