@@ -64,31 +64,97 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Labstep is a cloud-based Electronic Lab Notebook (ELN) and research data management platform for life-science, chemistry and pharma R&D teams. It combines step-by-step interactive protocols, structured experiment data capture, inventory and sample management with QR scanning, order management, instrument/device integration, chemistry and sequence tooling, and integrated Jupyter Notebooks for analysis — all under an audit trail with electronic signatures and sample lineage.
+Labstep is a cloud-based Electronic Lab Notebook (ELN) and research data management platform for life-science, chemistry and pharma R&D teams. It combines step-by-step interactive protocols, structured experiment data capture, inventory and sample management with QR scanning, order management, instrument/device integration, chemistry and sequence tooling, and integrated Jupyter Notebooks for analysis — all under an audit trail with electronic signatures and sample lineage. Labstep exposes a public REST API at api.labstep.com secured with a per-user API key, plus an officially maintained Python SDK (labstepPy) and an R package (labstepR) that wrap the same generic entity surface used by the application itself.
 
-Labstep exposes a public REST API at `https://api.labstep.com` secured with a per-user API key (`apikey` header), plus an officially maintained Python SDK (`labstepPy` / PyPI `labstep`) and an R package (`labstepR`) that wrap the same generic entity surface used by the application itself.
+**Areas:** Company · Electronic Lab Notebook · Life Sciences · Laboratory · Research Data Management · Scientific Software · Inventory · Biotechnology · Chemistry · Compliance
 
-- Website: https://www.labstep.com
-- API getting started: https://help.labstep.com/en/articles/1786226-getting-started-with-the-labstep-api
-- SDK reference: https://labsteppy.readthedocs.io/en/latest/
-- GitHub: https://github.com/Labstep
+## Labstep on APIs.io
 
-## Artifacts
+Everything profiled for Labstep is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/labstep/](https://apis.io/providers/labstep/)** — or go straight to one of the APIs or properties below.
 
-| Artifact | Path | Method |
-|---|---|---|
-| Packages / SDKs | `packages/labstep-packages.yml` | searched |
-| Authentication | `authentication/labstep-authentication.yml` | searched |
-| Conventions | `conventions/labstep-conventions.yml` | searched |
-| Conformance | `conformance/labstep-conformance.yml` | searched |
-| Changelog | `changelog/labstep-changelog.yml` | searched |
-| Lifecycle | `lifecycle/labstep-lifecycle.yml` | searched |
-| Well-known | `well-known/labstep-well-known.yml` | searched (all 404) |
-| Domain security | `security/labstep-domain-security.yml` | probed |
-| Error contract | `errors/labstep-error-codes.yml` | derived |
-| Data model | `data-model/labstep-data-model.yml` | derived |
-| llms.txt | `llms/labstep-llms.txt` | generated |
+### APIs (1)
 
-## Not published by Labstep
+- [Labstep API](https://apis.io/apis/labstep/labstep-api/) — The Labstep REST API exposes the same generic entity surface the Labstep application uses — experiments, protocols, resources, resource items, locations,…
 
-No OpenAPI/Swagger definition, no AsyncAPI or webhook surface, no MCP server, no OAuth authorization server or scopes, no CLI, no sandbox/test-credential program, no public status page, and no `security.txt` or vulnerability disclosure policy.
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Labstep Authentication](https://apis.io/security/labstep/labstep-authentication/)
+- [Labstep Domain Security](https://apis.io/security/labstep/labstep-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.labstep.com)
+- [Documentation](https://labsteppy.readthedocs.io/en/latest/)
+- [Getting started](https://help.labstep.com/en/articles/1786226-getting-started-with-the-labstep-api)
+- [API reference](https://labsteppy.readthedocs.io/en/latest/)
+- [Pricing](https://www.labstep.com/industry-pricing)
+- [Sign up](https://app.labstep.com/signup)
+- [Support](https://help.labstep.com)
+- [Changelog](https://help.labstep.com/en/collections/945011-release-notes)
+- [Blog](https://www.labstep.com/blogs/blog)
+- [Security](https://www.labstep.com/security)
+- [Compliance](https://www.labstep.com/security)
+- [Terms of service](https://www.labstep.com/terms-conditions)
+- [Privacy policy](https://www.labstep.com/privacy-policy)
+- [GitHub](https://github.com/Labstep)
+
+## API Evangelist rating
+
+**Kin Score 37.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 64.3 |
+| Access clarity | 46.1 |
+
+**Agent readiness 3.2** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 23.4** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/labstep/](https://apis.io/providers/labstep/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Labstep: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/labstep/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
